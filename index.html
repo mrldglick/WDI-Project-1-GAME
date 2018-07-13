@@ -1,10 +1,35 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="CSS/stylesheet.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" charset="utf-8"></script>
+  <script src="JS/app.js" charset="utf-8"></script>
+  <title>The Magic Market</title>
+</head>
+<body>
+  <header>
+    <div class="character">
+      <h1>Character</h1>
+      <h3>£<span id="money">2000</span></h3>
+      <h3><span id="hitPoints">0</span> HP</h3>
+    </div>
+    <div class="turnsLeft">
+      <h1>Turns Left</h1>
+      <h3 id="turnCounter">30</h3>
+    </div>
+    <div class="bank">
+      <h1>Bank</h1>
+      <h3>£<span id="debt">2000</span></h3>
+      <button id="payDebt" type="button" name="payDebt">Pay Debt</button>
+    </div>
+  </header>
+  <main>
+    <div class="product" id="pixieDust">
+      <p id="currentPricePixieDust"></p>
+        <p id="amountAvailablePixieDust"></p>
+    </div>
 
-  </body>
+  </main>
+</body>
 </html>
