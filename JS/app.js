@@ -109,9 +109,13 @@ $(() => {
       console.log('you have 1+ turns');
       turnCounter = (turnCounter - 1);
       $turnCounter.html(turnCounter);
-      character.debtBalance = (character.debtBalance * 1.1);
+      character.debtBalance =  (character.debtBalance * 1.1);
       $debtBalance.html(character.debtBalance);
-      
+      pixieDust.amountAvailable = getRandomAmountAvailabe(1, 20);
+      $currentDisplayAmountPixieDust.html(`${pixieDust.amountAvailable}`);
+      pixieDust.currentPrice = getCurrentRandomPrice(100, 450);
+      $currentDisplayPricePixieDust.html(`${pixieDust.amountAvailable}`);
+
 
 
     }
