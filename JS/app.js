@@ -43,6 +43,14 @@ $(() => {
     debtBalance: initialDebtBalance
   };
 
+  $money.html(`${character.money}`);
+  $health.html(`${character.health}`);
+  $myPixieDust.html(`${character.myPixieDust}`);
+  $bankBalance.html(`${character.bankBalance}`);
+  $debtBalance.html(`${character.debtBalance}`);
+
+  /////////////////PAY DEBT BUTTON /////////////
+
   $payDebt.on('click', () => {
     console.log(character.bankBalance);
     if(character.bankBalance >= character.debtBalance) {
@@ -55,12 +63,6 @@ $(() => {
   });
 
 
-
-  $money.html(`${character.money}`);
-  $health.html(`${character.health}`);
-  $myPixieDust.html(`${character.myPixieDust}`);
-  $bankBalance.html(`${character.bankBalance}`);
-  $debtBalance.html(`${character.debtBalance}`);
 
 
   ///////////////////////PRODUCTS////////////////
@@ -83,6 +85,9 @@ $(() => {
 
   $currentDisplayAmountPixieDust.html(`${pixieDust.amountAvailable}`);
 
+
+  /////////////////////BUY BUTTON///////////////
+
   const $buyPixieDust = $('#buyPixieDust');
 
   $buyPixieDust.on('click', () => {
@@ -99,6 +104,11 @@ $(() => {
       alert('You cannot buy anymore! Sucks to be you.');
     }
   });
+
+  ////////////////////SELL BUTTON///////////////
+
+
+
   //////////////////TURN COUNTER & NEXT TURN/////
 
   let turnCounter = initialTurns;
@@ -110,13 +120,13 @@ $(() => {
       turnCounter = (turnCounter - 1);
       $turnCounter.html(turnCounter);
       character.debtBalance =  (character.debtBalance * 1.1);
-      $debtBalance.html(character.debtBalance);
+      $debtBalance.html((character.debtBalance).toFixed(2));
       pixieDust.amountAvailable = getRandomAmountAvailabe(1, 20);
       $currentDisplayAmountPixieDust.html(`${pixieDust.amountAvailable}`);
       pixieDust.currentPrice = getCurrentRandomPrice(100, 450);
       $currentDisplayPricePixieDust.html(`${pixieDust.amountAvailable}`);
     } else if (character.debtBalance > 0) {
-      alert('You loose! The goblin loan shark has removed your debt from your flesh...');
+      alert('You loose! The goblin loan shark has cut your debt out of your flesh... fun times!');
     } else if (character.debtBalance === 0) {
       alert(`You win, your score is ${character.bankBalance}`);
     }

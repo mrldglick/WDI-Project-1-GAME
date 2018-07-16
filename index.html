@@ -7,66 +7,117 @@
   <script src="JS/app.js" charset="utf-8"></script>
   <title>The Magic Market</title>
 </head>
+
 <body>
   <header>
+
     <div class="character">
       <h1>Character</h1>
       <img src="./images/wizard.png" alt="This is you!">
       <p>£<span id="money"></span></p>
       <p><span id="health"></span> HP</p>
     </div>
+
     <div class="turnsRemaining">
       <h1>Turns Remaining</h1>
       <h3 id="turnCounter">30</h3>
     </div>
+
     <div class="bank">
       <h1>Bank</h1>
       <p>Your bank balance is £<span id=bankBalance></span>.</p>
+      <span>£</span><input class="makeDeposit" type="number" name="deposit">
+      <input class="makeDeposit" type="submit" name="makeDeposit" value="Make Deposit">
       <p>You are £<span id="debtBalance"></span> in debt!</p>
-      <button id="payDebt" type="button" name="payDebt">Pay Debt</button>
+      <button id="payDebt" type="button" name="payDebt">Pay Debt?</button>
     </div>
+
   </header>
   <main>
+
+    <div class="product" id="pixieDust">
+      <h3>Human Bone</h3>
+      <img class="productIcon" src="./images/bone-icon.png" alt="human bone" id='humanBonePicture'>
+      <p class="currentPrice">Todays price is £<span id="currentPriceHumanBone"></span></p>
+      <p class"amountAvailable"><span id="amountAvailableHumanBone"></span> avaidable units to buy.</p>
+      <p>You own <span id="myHumanBone"></span> units.</p>
+      <button class="buy" id="buyHumanBone" type="button" name="button">Buy</button>
+      <button class="sell" id="sellHumanBone" type="button" name="button">Sell</button>
+    </div>
+
     <div class="product" id="pixieDust">
       <h3>Pixie Dust</h3>
-      <img src="./images/pixie-dust-icon.png" alt="pixie dust bag" id='pixieDustPicture'>
-      <p>Todays price is £<span id="currentPricePixieDust"></span></p>
-      <p><span id="amountAvailablePixieDust"></span> avaidable units to buy.</p>
+      <img class="productIcon" src="./images/pixie-dust-icon.png" alt="pixie dust bag" id='pixieDustPicture'>
+      <p class="currentPrice">Todays price is £<span id="currentPricePixieDust"></span></p>
+      <p class"amountAvailable"><span id="amountAvailablePixieDust"></span> avaidable units to buy.</p>
       <p>You own <span id="myPixieDust"></span> units.</p>
-      <button id="buyPixieDust" type="button" name="button">Buy</button>
-      <button id="sellPixieDust" type="button" name="button">Sell</button>
+      <button class="buy" id="buyPixieDust" type="button" name="button">Buy</button>
+      <button class="sell" id="sellPixieDust" type="button" name="button">Sell</button>
     </div>
-    <div class="product" id="dragonBlood">
-      <h3>Dragons Blood</h3>
-      <p id="currentPriceDragonBlood"></p>
-      <p id="amountAvailabledragonBlood"></p>
+
+    <div class="product" id="pixieDust">
+      <h3>Pixie Dust</h3>
+      <img class="productIcon" src="./images/pixie-dust-icon.png" alt="pixie dust bag" id='pixieDustPicture'>
+      <p class="currentPrice">Todays price is £<span id="currentPricePixieDust"></span></p>
+      <p class"amountAvailable"><span id="amountAvailablePixieDust"></span> avaidable units to buy.</p>
+      <p>You own <span id="myPixieDust"></span> units.</p>
+      <button class="buy" id="buyPixieDust" type="button" name="button">Buy</button>
+      <button class="sell" id="sellPixieDust" type="button" name="button">Sell</button>
     </div>
-    <!-- <div class="product" id="dragonBlood">
-    <p id="currentPriceDragonBlood"></p>
-    <p id="amountAvailableDragonBlood"></p>
-  </div>
-  <div class="product" id="pixieDust">
-  <p id="currentPricePixieDust"></p>
-  <p id="amountAvailablePixieDust"></p>
-</div>
-<div class="product" id="pixieDust">
-<p id="currentPricePixieDust"></p>
-<p id="amountAvailablePixieDust"></p>
-</div>
-<div class="product" id="pixieDust">
-<p id="currentPricePixieDust"></p>
-<p id="amountAvailablePixieDust"></p>
-</div>
-<div class="product" id="pixieDust">
-<p id="currentPricePixieDust"></p>
-<p id="amountAvailablePixieDust"></p>
-</div>
-<div class="product" id="pixieDust">
-<p id="currentPricePixieDust"></p>
-<p id="amountAvailablePixieDust"></p>
-</div> -->
+
+    <div class="product" id="pixieDust">
+      <h3>Pixie Dust</h3>
+      <img class="productIcon" src="./images/pixie-dust-icon.png" alt="pixie dust bag" id='pixieDustPicture'>
+      <p class="currentPrice">Todays price is £<span id="currentPricePixieDust"></span></p>
+      <p class"amountAvailable"><span id="amountAvailablePixieDust"></span> avaidable units to buy.</p>
+      <p>You own <span id="myPixieDust"></span> units.</p>
+      <button class="buy" id="buyPixieDust" type="button" name="button">Buy</button>
+      <button class="sell" id="sellPixieDust" type="button" name="button">Sell</button>
+    </div>
+
+    <div class="product" id="pixieDust">
+      <h3>Pixie Dust</h3>
+      <img class="productIcon" src="./images/pixie-dust-icon.png" alt="pixie dust bag" id='pixieDustPicture'>
+      <p class="currentPrice">Todays price is £<span id="currentPricePixieDust"></span></p>
+      <p class"amountAvailable"><span id="amountAvailablePixieDust"></span> avaidable units to buy.</p>
+      <p>You own <span id="myPixieDust"></span> units.</p>
+      <button class="buy" id="buyPixieDust" type="button" name="button">Buy</button>
+      <button class="sell" id="sellPixieDust" type="button" name="button">Sell</button>
+    </div>
+
+    <div class="product" id="pixieDust">
+      <h3>Pixie Dust</h3>
+      <img class="productIcon" src="./images/pixie-dust-icon.png" alt="pixie dust bag" id='pixieDustPicture'>
+      <p class="currentPrice">Todays price is £<span id="currentPricePixieDust"></span></p>
+      <p class"amountAvailable"><span id="amountAvailablePixieDust"></span> avaidable units to buy.</p>
+      <p>You own <span id="myPixieDust"></span> units.</p>
+      <button class="buy" id="buyPixieDust" type="button" name="button">Buy</button>
+      <button class="sell" id="sellPixieDust" type="button" name="button">Sell</button>
+    </div>
+
+    <div class="product" id="pixieDust">
+      <h3>Pixie Dust</h3>
+      <img class="productIcon" src="./images/pixie-dust-icon.png" alt="pixie dust bag" id='pixieDustPicture'>
+      <p class="currentPrice">Todays price is £<span id="currentPricePixieDust"></span></p>
+      <p class"amountAvailable"><span id="amountAvailablePixieDust"></span> avaidable units to buy.</p>
+      <p>You own <span id="myPixieDust"></span> units.</p>
+      <button class="buy" id="buyPixieDust" type="button" name="button">Buy</button>
+      <button class="sell" id="sellPixieDust" type="button" name="button">Sell</button>
+    </div>
+
+    <div class="product" id="pixieDust">
+      <h3>Pixie Dust</h3>
+      <img class="productIcon" src="./images/pixie-dust-icon.png" alt="pixie dust bag" id='pixieDustPicture'>
+      <p class="currentPrice">Todays price is £<span id="currentPricePixieDust"></span></p>
+      <p class"amountAvailable"><span id="amountAvailablePixieDust"></span> avaidable units to buy.</p>
+      <p>You own <span id="myPixieDust"></span> units.</p>
+      <button class="buy" id="buyPixieDust" type="button" name="button">Buy</button>
+      <button class="sell" id="sellPixieDust" type="button" name="button">Sell</button>
+    </div>
+
 
 </main>
+
 <footer>
   <button id="nextTurn" type="button" name="button">Next Turn</button>
 </footer>
