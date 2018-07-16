@@ -115,10 +115,12 @@ $(() => {
       $currentDisplayAmountPixieDust.html(`${pixieDust.amountAvailable}`);
       pixieDust.currentPrice = getCurrentRandomPrice(100, 450);
       $currentDisplayPricePixieDust.html(`${pixieDust.amountAvailable}`);
-
-
-
+    } else if (character.debtBalance > 0) {
+      alert('You loose! The goblin loan shark has removed your debt from your flesh...');
+    } else if (character.debtBalance === 0) {
+      alert(`You win, your score is ${character.bankBalance}`);
     }
+
   });
 
 
