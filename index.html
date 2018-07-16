@@ -11,54 +11,60 @@
   <header>
     <div class="character">
       <h1>Character</h1>
-      <h3>£<span id="money">2000</span></h3>
-      <h3><span id="hitPoints">0</span> HP</h3>
+      <p>£<span id="money"></span></p>
+      <p><span id="health"></span> HP</p>
     </div>
-    <div class="turnsLeft">
-      <h1>Turns Left</h1>
+    <div class="turnsRemaining">
+      <h1>Turns Remaining</h1>
       <h3 id="turnCounter">30</h3>
     </div>
     <div class="bank">
       <h1>Bank</h1>
-      <h3>£<span id="debt">2000</span></h3>
+      <p>Your bank balance is £<span id=bankBalance></span>.</p>
+      <p>You are £<span id="debtBalance"></span> in debt!</p>
       <button id="payDebt" type="button" name="payDebt">Pay Debt</button>
     </div>
   </header>
   <main>
     <div class="product" id="pixieDust">
       <h3>Pixie Dust</h3>
-      <p id="currentPricePixieDust"></p>
-        <p id="amountAvailablePixieDust"></p>
+      <img src="./images/pixie-dust-icon.png" alt="pixie dust bag" id='pixieDustPicture'>
+      <p>Todays price is £<span id="currentPricePixieDust"></span></p>
+      <p><span id="amountAvailablePixieDust"></span> avaidable units to buy.</p>
+      <p>You own <span id="myPixieDust"></span> units.</p>
+      <button id="buyPixieDust" type="button" name="button">Buy</button>
+      <button id="sellPixieDust" type="button" name="button">Sell</button>
     </div>
     <div class="product" id="dragonBlood">
+      <h3>Dragons Blood</h3>
       <p id="currentPriceDragonBlood"></p>
-        <p id="amountAvailabledragonBlood"></p>
+      <p id="amountAvailabledragonBlood"></p>
     </div>
     <!-- <div class="product" id="dragonBlood">
-      <p id="currentPriceDragonBlood"></p>
-        <p id="amountAvailableDragonBlood"></p>
-    </div>
-    <div class="product" id="pixieDust">
-      <p id="currentPricePixieDust"></p>
-        <p id="amountAvailablePixieDust"></p>
-    </div>
-    <div class="product" id="pixieDust">
-      <p id="currentPricePixieDust"></p>
-        <p id="amountAvailablePixieDust"></p>
-    </div>
-    <div class="product" id="pixieDust">
-      <p id="currentPricePixieDust"></p>
-        <p id="amountAvailablePixieDust"></p>
-    </div>
-    <div class="product" id="pixieDust">
-      <p id="currentPricePixieDust"></p>
-        <p id="amountAvailablePixieDust"></p>
-    </div>
-    <div class="product" id="pixieDust">
-      <p id="currentPricePixieDust"></p>
-        <p id="amountAvailablePixieDust"></p>
-    </div> -->
+    <p id="currentPriceDragonBlood"></p>
+    <p id="amountAvailableDragonBlood"></p>
+  </div>
+  <div class="product" id="pixieDust">
+  <p id="currentPricePixieDust"></p>
+  <p id="amountAvailablePixieDust"></p>
+</div>
+<div class="product" id="pixieDust">
+<p id="currentPricePixieDust"></p>
+<p id="amountAvailablePixieDust"></p>
+</div>
+<div class="product" id="pixieDust">
+<p id="currentPricePixieDust"></p>
+<p id="amountAvailablePixieDust"></p>
+</div>
+<div class="product" id="pixieDust">
+<p id="currentPricePixieDust"></p>
+<p id="amountAvailablePixieDust"></p>
+</div>
+<div class="product" id="pixieDust">
+<p id="currentPricePixieDust"></p>
+<p id="amountAvailablePixieDust"></p>
+</div> -->
 
-  </main>
+</main>
 </body>
 </html>
