@@ -32,14 +32,12 @@ $(() => {
     inventory: {
       'Pixie Dust': 0,
       'Human Bone': 0,
-      // TODO: etc....
-      dragonsBlood: 0,
-      humanBone: 0,
-      UnicornHorn: 0,
-      PhoenixFeather: 0,
-      CrazyMushroom: 0,
-      SnakeOil: 0,
-      GiantSpiderLeg: 0,
+      'Phoenix Feather': 0,
+      'Dragon Blood': 0,
+      'Unicorn Horn': 0,
+      'Crazy Mushroom': 0,
+      'Snake Oil': 0,
+      'Giant Spider Leg': 0
     },
     bankBalance: initialBankBalance,
     debtBalance: initialDebtBalance
@@ -66,8 +64,8 @@ $(() => {
 
 
 
-  ///////////////////////PRODUCTS////////////////
-  ///////////////////////PIXIE/DUST////////////////////
+  //////////////////////Products(Items)////////////////
+
   const $currentDisplayPricePixieDust = $('#currentPricePixieDust');
   const $currentDisplayAmountPixieDust = $('#amountAvailablePixieDust');
 
@@ -86,7 +84,7 @@ $(() => {
       $quantityDiv: $(`#${quantityDivId}`),
       $inventoryDiv: $(`#${inventoryDivId}`),
       $buyButton: $(`#${buyButtonId}`)
-    }
+    };
     item.recalculateMarket();
     return item;
   }
@@ -100,16 +98,48 @@ $(() => {
     $domElement.text(value);
   }
 
-  const pixieDust = createItem('Pixie Dust', [100, 450], [1, 20], 'amountAvailablePixieDust', 'myPixieDust', 'buyPixieDust');
-  displayCurrentItemMarket(pixieDust);
-  const humanBone = createItem('Human Bone', [1000, 2500], [8, 12], 'amountAvailableHumanBone', 'myHumanBone', 'buyHumanBone');
+  const allItems = [];
+
+  const pixieDust = createItem('Pixie Dust', [100, 450], [0, 20], 'amountAvailablePixieDust', 'myPixieDust', 'buyPixieDust');
+  // displayCurrentItemMarket(pixieDust);
+  const humanBone = createItem('Human Bone', [1600, 3000], [0, 12], 'amountAvailableHumanBone', 'myHumanBone', 'buyHumanBone');
+  // displayCurrentItemMarket(humanBone);
+  const phoenixFeather = createItem('Phoenix Feather', [500, 1300], [0, 32], 'amountAvailablePhoenixFeather', 'myPhoenixFeather', 'buyPhoenixFeather');
+  // displayCurrentItemMarket(phoenixFeather);
+  const dragonBlood = createItem('Dragon Blood', [7000, 12500], [0, 11], 'amountAvailableDragonBlood', 'myDragonBlood', 'buyDragonBlood');
+  // displayCurrentItemMarket(dragonBlood);
+  const unicornHorn = createItem('Unicorn Horn', [10, 250], [0, 80], 'amountAvailableUnicornHorn', 'myUnicornHorn', 'buyUnicornHorn');
+  // displayCurrentItemMarket(unicornHorn);
+  const crazyMushroom = createItem('Crazy Mushroom', [330, 1100], [0, 18], 'amountAvailableCrazyMushroom', 'myCrazyMushroom', 'buyCrazyMushroom');
+  // displayCurrentItemMarket(crazyMushroom);
+  const snakeOil = createItem('Snake Oil', [100, 250], [2, 22], 'amountAvailableSnakeOil', 'mySnakeOil', 'buySnakeOil');
+  // displayCurrentItemMarket(snakeOil);
+  const giantSpiderLeg = createItem('Giant Spider Leg', [11000, 44500], [0, 8], 'amountAvailableGiantSpiderLeg', 'myGiantSpiderLeg', 'buyGiantSpiderLeg');
+  // displayCurrentItemMarket(giantSpiderLeg);
+
+  allItems.push(pixieDust, humanBone, phoenixFeather, dragonBlood, unicornHorn, crazyMushroom, snakeOil, giantSpiderLeg);
+
+  allItems.forEach(item => displayCurrentItemMarket(item));
+
 
   function displayAllItemValues() {
     displayValue($currentDisplayPricePixieDust, pixieDust.currentPrice);
     displayValue($currentDisplayAmountPixieDust, pixieDust.amountAvailable);
     displayValue($('currentPriceHumanBone'), humanBone.currentPrice);
     displayValue($('amountAvailableHumanBone'), humanBone.amountAvailable);
-    // etc...
+    displayValue($('currentPricePhoenixFeather'), phoenixFeather.currentPrice);
+    displayValue($('amountAvailablePhoenixFeather'), phoenixFeather.amountAvailable);
+    displayValue($('currentPriceDragonBlood'), dragonBlood.currentPrice);
+    displayValue($('amountAvailableDragonBlood'), dragonBlood.amountAvailable);
+    displayValue($('currentPriceUnicornHorn'), unicornHorn.currentPrice);
+    displayValue($('amountAvailableUnicornHorn'), unicornHorn.amountAvailable);
+    displayValue($('currentPriceCrazyMushroom'), crazyMushroom.currentPrice);
+    displayValue($('amountAvailableCrazyMushroom'), crazyMushroom.amountAvailable);
+    displayValue($('currentPriceSnakeOil'), snakeOil.currentPrice);
+    displayValue($('amountAvailableSnakeOil'), snakeOil.amountAvailable);
+    displayValue($('currentPriceGiantSpiderLeg'), giantSpiderLeg.currentPrice);
+    displayValue($('amountAvailableGiantSpiderLeg'), giantSpiderLeg.amountAvailable);
+
   }
   displayAllItemValues();
 
@@ -148,6 +178,7 @@ $(() => {
   addBuyClickListener(pixieDust);
   addBuyClickListener(humanBone);
 
+  console.log('this is the items object ->', allItems);
 
   ////////////////////SELL BUTTON///////////////
 
@@ -165,10 +196,17 @@ $(() => {
       $turnCounter.html(turnCounter);
       character.debtBalance =  (character.debtBalance * 1.1);
       $debtBalance.html((character.debtBalance).toFixed(2));
+
+
+
+
       pixieDust.amountAvailable = getRandomAmountAvailabe(1, 20);
       $currentDisplayAmountPixieDust.html(`${pixieDust.amountAvailable}`);
-      pixieDust.currentPrice = getCurrentRandomPrice(100, 450);
-      $currentDisplayPricePixieDust.html(`${pixieDust.currentPrice}`);
+
+
+
+      // pixieDust.currentPrice = getCurrentRandomPrice(100, 450);
+      // $currentDisplayPricePixieDust.html(`${pixieDust.currentPrice}`);
     } else if (character.debtBalance > 0) {
       alert('You loose! The goblin loan shark has cut your debt out of your flesh... fun times!');
     } else if (character.debtBalance === 0) {
