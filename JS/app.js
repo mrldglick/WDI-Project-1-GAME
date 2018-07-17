@@ -53,7 +53,18 @@ $(() => {
     }
   });
 
+  ////////////////////DEPOSIT INPUT///////////////////
 
+  const $buttonDeposit = $('#buttonDeposit');
+  const $inputDeposit = $('#inputDeposit');
+  $buttonDeposit.on('click', () => {
+    const deposit = $inputDeposit.val();
+    character.money = character.money - parseFloat(deposit);
+    character.bankBalance = character.bankBalance + parseFloat(deposit);
+    $money.html(character.money);
+    $bankBalance.html(character.bankBalance);
+    $nextTurn();
+  });
 
 
   //////////////////////Products(Items)////////////////
