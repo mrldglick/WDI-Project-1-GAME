@@ -1,9 +1,18 @@
 img {
   height: 100px
 }
+
+.topScreen {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
 main {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: flex-start;
+  margin: 100px;
 }

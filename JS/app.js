@@ -29,23 +29,24 @@ $(() => {
 
     money: initialMoney,
     health: initialHealth,
-
-    myPixieDust: 0,
-    myDragonsBlood: 0,
-    myHumanBone: 0,
-    myUnicornHorn: 0,
-    myPhoenixFeather: 0,
-    myCrazyMushroom: 0,
-    mySnakeOil: 0,
-    myGiantSpiderLeg: 0,
-
+    inventory: {
+      'Pixie Dust': 0,
+      'Human Bone': 0,
+      // TODO: etc....
+      dragonsBlood: 0,
+      humanBone: 0,
+      UnicornHorn: 0,
+      PhoenixFeather: 0,
+      CrazyMushroom: 0,
+      SnakeOil: 0,
+      GiantSpiderLeg: 0,
+    },
     bankBalance: initialBankBalance,
     debtBalance: initialDebtBalance
   };
 
   $money.html(`${character.money}`);
   $health.html(`${character.health}`);
-  $myPixieDust.html(`${character.myPixieDust}`);
   $bankBalance.html(`${character.bankBalance}`);
   $debtBalance.html(`${character.debtBalance}`);
 
@@ -70,40 +71,83 @@ $(() => {
   const $currentDisplayPricePixieDust = $('#currentPricePixieDust');
   const $currentDisplayAmountPixieDust = $('#amountAvailablePixieDust');
 
-  let pixieDust ={
-    currentPrice: getCurrentRandomPrice(100, 450),
-    amountAvailable: getRandomAmountAvailabe(1, 20)
-  };
-
-  function getCurrentRandomPrice(min, max){
+  function randomRange(range) {
+    const min = range[0];
+    const max = range[1];
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
-  function getRandomAmountAvailabe(min, max){
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+
+  function createItem(name, priceRange, quantityRange, quantityDivId, inventoryDivId, buyButtonId) {
+    const item = {
+      name: name,
+      randomPriceRange: priceRange,
+      randomQuantityRange: quantityRange,
+      recalculateMarket: recalculateMarket,
+      $quantityDiv: $(`#${quantityDivId}`),
+      $inventoryDiv: $(`#${inventoryDivId}`),
+      $buyButton: $(`#${buyButtonId}`)
+    }
+    item.recalculateMarket();
+    return item;
   }
-  $currentDisplayPricePixieDust.html(`${pixieDust.currentPrice}`);
 
-  $currentDisplayAmountPixieDust.html(`${pixieDust.amountAvailable}`);
+  function recalculateMarket() {
+    this.currentPrice = randomRange(this.randomPriceRange);
+    this.amountAvailable = randomRange(this.randomQuantityRange);
+  }
 
+  function displayValue($domElement, value) {
+    $domElement.text(value);
+  }
+
+  const pixieDust = createItem('Pixie Dust', [100, 450], [1, 20], 'amountAvailablePixieDust', 'myPixieDust', 'buyPixieDust');
+  displayCurrentItemMarket(pixieDust);
+  const humanBone = createItem('Human Bone', [1000, 2500], [8, 12], 'amountAvailableHumanBone', 'myHumanBone', 'buyHumanBone');
+
+  function displayAllItemValues() {
+    displayValue($currentDisplayPricePixieDust, pixieDust.currentPrice);
+    displayValue($currentDisplayAmountPixieDust, pixieDust.amountAvailable);
+    displayValue($('currentPriceHumanBone'), humanBone.currentPrice);
+    displayValue($('amountAvailableHumanBone'), humanBone.amountAvailable);
+    // etc...
+  }
+  displayAllItemValues();
 
   /////////////////////BUY BUTTON///////////////
 
-  const $buyPixieDust = $('#buyPixieDust');
+  function itemCanBeBought(item) {
+    return character.money >= item.currentPrice && item.amountAvailable > 0;
+  }
 
-  $buyPixieDust.on('click', () => {
-    if (character.money >= pixieDust.currentPrice && pixieDust.amountAvailable > 0) {
-      console.log('you can buy');
-      character.money = (character.money - pixieDust.currentPrice);
-      character.myPixieDust++;
-      pixieDust.amountAvailable = (pixieDust.amountAvailable - 1);
-      console.log(character);
-      $currentDisplayAmountPixieDust.html(pixieDust.amountAvailable);
-      $money.html(character.money);
-      $myPixieDust.html(character.myPixieDust);
-    } else {
-      alert('You cannot buy anymore! Sucks to be you.');
-    }
-  });
+  function buyItem(item) {
+    character.money = (character.money - item.currentPrice);
+    console.log(character.inventory);
+    character.inventory[item.name]++;
+    item.amountAvailable = (item.amountAvailable - 1);
+  }
+
+  function displayCurrentItemMarket(item) {
+    item.$quantityDiv.html(item.amountAvailable);
+    $money.html(character.money);
+    item.$inventoryDiv.html(character.inventory[item.name]);
+  }
+
+  function addBuyClickListener(item) {
+    item.$buyButton.on('click', () => {
+      if (itemCanBeBought(item)) {
+        console.log(`you can buy ${item.name}`);
+        buyItem(item);
+        console.log(character);
+        displayCurrentItemMarket(item);
+      } else {
+        alert(`You cannot buy ${item.name} anymore! Sucks to be you.`);
+      }
+    });
+  }
+
+  addBuyClickListener(pixieDust);
+  addBuyClickListener(humanBone);
+
 
   ////////////////////SELL BUTTON///////////////
 
@@ -124,7 +168,7 @@ $(() => {
       pixieDust.amountAvailable = getRandomAmountAvailabe(1, 20);
       $currentDisplayAmountPixieDust.html(`${pixieDust.amountAvailable}`);
       pixieDust.currentPrice = getCurrentRandomPrice(100, 450);
-      $currentDisplayPricePixieDust.html(`${pixieDust.amountAvailable}`);
+      $currentDisplayPricePixieDust.html(`${pixieDust.currentPrice}`);
     } else if (character.debtBalance > 0) {
       alert('You loose! The goblin loan shark has cut your debt out of your flesh... fun times!');
     } else if (character.debtBalance === 0) {
@@ -134,7 +178,10 @@ $(() => {
   });
 
 
-
+//////////////////////////////////////////////
+// Product-related functions
+//////////////////////////////////////////////
+function displayNewMarket(product) {}
 
 
 
