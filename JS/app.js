@@ -7,6 +7,8 @@ $(() => {
   const $debtBalance = $('#debtBalance');
   const $payDebt = $('#payDebt');
   const $nextTurn = $('#nextTurn');
+  const $buttonDeposit = $('#buttonDeposit');
+  const $inputDeposit = $('#inputDeposit');
 
   const initialMoney = 2000;
   const initialHealth = 10;
@@ -55,8 +57,6 @@ $(() => {
 
   ////////////////////DEPOSIT INPUT///////////////////
 
-  const $buttonDeposit = $('#buttonDeposit');
-  const $inputDeposit = $('#inputDeposit');
   $buttonDeposit.on('click', () => {
     const deposit = $inputDeposit.val();
     character.money = character.money - parseFloat(deposit);
@@ -75,7 +75,7 @@ $(() => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  function createItem(name, priceRange, quantityRange, quantityDivId, inventoryDivId, buyButtonId, currentDisplayPrice, amountAvailable) {
+  function createItem(name, priceRange, quantityRange, quantityDivId, inventoryDivId, buyButtonId, currentDisplayPrice, amountAvailable, sellButtonId) {
     const item = {
       name: name,
       randomPriceRange: priceRange,
@@ -85,7 +85,8 @@ $(() => {
       $inventoryDiv: $(`#${inventoryDivId}`),
       $buyButton: $(`#${buyButtonId}`),
       $currentDisplayPrice: $(`#${currentDisplayPrice}`),
-      $currentDisplayAmount: $(`#${amountAvailable}`)
+      $currentDisplayAmount: $(`#${amountAvailable}`),
+      $sellButton: $(`#${sellButtonId}`)
     };
     item.recalculateMarket();
     return item;
@@ -104,21 +105,21 @@ $(() => {
 
   const allItems = [];
 
-  const pixieDust = createItem('Pixie Dust', [100, 450], [0, 20], 'amountAvailablePixieDust', 'myPixieDust', 'buyPixieDust', 'currentPricePixieDust', 'amountAvailablePixieDust');
+  const pixieDust = createItem('Pixie Dust', [100, 450], [0, 20], 'amountAvailablePixieDust', 'myPixieDust', 'buyPixieDust', 'currentPricePixieDust', 'amountAvailablePixieDust', 'sellPixieDust');
 
-  const humanBone = createItem('Human Bone', [1600, 3000], [0, 12], 'amountAvailableHumanBone', 'myHumanBone', 'buyHumanBone', 'currentPriceHumanBone', 'amountAvailableHumanBone');
+  const humanBone = createItem('Human Bone', [1600, 3000], [0, 12], 'amountAvailableHumanBone', 'myHumanBone', 'buyHumanBone', 'currentPriceHumanBone', 'amountAvailableHumanBone', 'sellHumanBone');
 
-  const phoenixFeather = createItem('Phoenix Feather', [500, 1300], [0, 32], 'amountAvailablePhoenixFeather', 'myPhoenixFeather', 'buyPhoenixFeather', 'currentPricePhoenixFeather', 'amountAvailablePhoenixFeather');
+  const phoenixFeather = createItem('Phoenix Feather', [500, 1300], [0, 32], 'amountAvailablePhoenixFeather', 'myPhoenixFeather', 'buyPhoenixFeather', 'currentPricePhoenixFeather', 'amountAvailablePhoenixFeather', 'sellPhoenixFeather');
 
-  const dragonBlood = createItem('Dragon Blood', [7000, 12500], [0, 11], 'amountAvailableDragonBlood', 'myDragonBlood', 'buyDragonBlood', 'currentPriceDragonBlood', 'amountAvailableDragonBlood');
+  const dragonBlood = createItem('Dragon Blood', [7000, 12500], [0, 11], 'amountAvailableDragonBlood', 'myDragonBlood', 'buyDragonBlood', 'currentPriceDragonBlood', 'amountAvailableDragonBlood', 'sellDragonBlood');
 
-  const unicornHorn = createItem('Unicorn Horn', [10, 250], [0, 80], 'amountAvailableUnicornHorn', 'myUnicornHorn', 'buyUnicornHorn', 'currentPriceUnicornHorn', 'amountAvailableUnicornHorn');
+  const unicornHorn = createItem('Unicorn Horn', [10, 250], [0, 80], 'amountAvailableUnicornHorn', 'myUnicornHorn', 'buyUnicornHorn', 'currentPriceUnicornHorn', 'amountAvailableUnicornHorn', 'sellUnicornHorn');
 
-  const crazyMushroom = createItem('Crazy Mushroom', [330, 1100], [0, 18], 'amountAvailableCrazyMushroom', 'myCrazyMushroom', 'buyCrazyMushroom', 'currentPriceCrazyMushroom', 'amountAvailableCrazyMushroom');
+  const crazyMushroom = createItem('Crazy Mushroom', [330, 1100], [0, 18], 'amountAvailableCrazyMushroom', 'myCrazyMushroom', 'buyCrazyMushroom', 'currentPriceCrazyMushroom', 'amountAvailableCrazyMushroom', 'sellCrazyMushroom');
 
-  const snakeOil = createItem('Snake Oil', [100, 250], [2, 22], 'amountAvailableSnakeOil', 'mySnakeOil', 'buySnakeOil', 'currentPriceSnakeOil', 'amountAvailableSnakeOil');
+  const snakeOil = createItem('Snake Oil', [100, 250], [2, 22], 'amountAvailableSnakeOil', 'mySnakeOil', 'buySnakeOil', 'currentPriceSnakeOil', 'amountAvailableSnakeOil', 'sellSnakeOil');
 
-  const giantSpiderLeg = createItem('Giant Spider Leg', [11000, 44500], [0, 8], 'amountAvailableGiantSpiderLeg', 'myGiantSpiderLeg', 'buyGiantSpiderLeg', 'currentPriceGiantSpiderLeg', 'amountAvailableGiantSpiderLeg');
+  const giantSpiderLeg = createItem('Giant Spider Leg', [11000, 44500], [0, 8], 'amountAvailableGiantSpiderLeg', 'myGiantSpiderLeg', 'buyGiantSpiderLeg', 'currentPriceGiantSpiderLeg', 'amountAvailableGiantSpiderLeg', 'sellGiantSpiderLeg');
 
 
   allItems.push(pixieDust, humanBone, phoenixFeather, dragonBlood, unicornHorn, crazyMushroom, snakeOil, giantSpiderLeg);
@@ -153,7 +154,7 @@ $(() => {
         console.log(character);
         displayCurrentItemMarket(item);
       } else {
-        alert(`You cannot buy ${item.name} anymore! Sucks to be you.`);
+        alert(`You cannot buy ${item.name}! Sucks to be you.`);
       }
     });
   }
@@ -168,7 +169,30 @@ $(() => {
   ////////////////////SELL BUTTON///////////////
 
 
+  function itemCanBeSold(item) {
+    return character.inventory[item.name] > 0;
+  }
 
+  function sellItem(item) {
+    character.money = (character.money + item.currentPrice);
+    console.log(character.inventory);
+    character.inventory[item.name]--;
+    item.amountAvailable += 1;
+  }
+
+  function addSellClickListener(item) {
+    item.$sellButton.on('click', () => {
+      if (itemCanBeSold(item)) {
+        console.log(`you can sell ${item.name}`);
+        sellItem(item);
+        console.log(character);
+        displayCurrentItemMarket(item);
+      } else {
+        alert(`You cannot sell ${item.name}! You dont own any, idoit!`);
+      }
+    });
+  }
+  allItems.forEach(item => addSellClickListener(item));
   //////////////////TURN COUNTER & NEXT TURN/////
 
   let turnCounter = initialTurns;
