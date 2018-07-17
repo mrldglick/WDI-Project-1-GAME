@@ -48,7 +48,7 @@ $(() => {
     if(character.bankBalance >= character.debtBalance) {
       character.bankBalance - character.debtBalance;
       $debtBalance.html(character.debtBalance);
-      $nextTurn();
+      nextTurn();
       console.log('debt paid');
     } else {
       console.log('not enough money!');
@@ -63,7 +63,8 @@ $(() => {
     character.bankBalance = character.bankBalance + parseFloat(deposit);
     $money.html(character.money);
     $bankBalance.html(character.bankBalance);
-    $nextTurn();
+    nextTurn();
+    $inputDeposit.val('');
   });
 
 
@@ -196,11 +197,11 @@ $(() => {
   //////////////////TURN COUNTER & NEXT TURN/////
 
   let turnCounter = initialTurns;
-  let $turnCounter = $('#turnCounter');
+  const $turnCounter = $('#turnCounter');
 
-  console.log($nextTurn);
+  $nextTurn.on('click', nextTurn);
 
-  $nextTurn.on('click', () => {
+  function nextTurn() {
     if (turnCounter >= 1) {
       console.log('you have 1+ turns');
       turnCounter = (turnCounter - 1);
@@ -214,6 +215,10 @@ $(() => {
     } else if (character.debtBalance === 0) {
       alert(`You win, your score is ${character.bankBalance}`);
     }
+  }
+  //////////////////////Random Encounters//////////////////////////////////
 
-  });
+//create function around a random chance genrator (probably 'maths.random') which will if you health is greater than 1 subtract 1 health from character.health, and then create an alert to tell you that you have been attacked. If however you have health is equal to 1 it will send you an alert telling you that you have been attacked, died, and lost, then it will reset the window.
+
+
 });
