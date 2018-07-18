@@ -9,8 +9,8 @@ $(() => {
   const $nextTurn = $('#nextTurn');
   const $buttonDeposit = $('#buttonDeposit');
   const $inputDeposit = $('#inputDeposit');
-  const encounterChance = 0.05;
-  const initialMoney = 2000;
+  const encounterChance = 0.02;
+  const initialMoney = 3000;
   const initialHealth = 10;
   const initialTurns = 30;
   const initialDebtBalance = 4000;
@@ -36,7 +36,8 @@ $(() => {
     debtBalance: initialDebtBalance
   };
 
-  $money.html(`${character.money}`);
+  // $money.html(`${character.money}`);
+  $money.html((character.money).toFixed(2));
   $health.html(`${character.health}`);
   $bankBalance.html(`${character.bankBalance}`);
   $debtBalance.html(`${character.debtBalance}`);
@@ -108,19 +109,19 @@ $(() => {
 
   const pixieDust = createItem('Pixie Dust', [100, 450], [0, 20], 'amountAvailablePixieDust', 'myPixieDust', 'buyPixieDust', 'currentPricePixieDust', 'amountAvailablePixieDust', 'sellPixieDust');
 
-  const humanBone = createItem('Human Bone', [1600, 3000], [0, 12], 'amountAvailableHumanBone', 'myHumanBone', 'buyHumanBone', 'currentPriceHumanBone', 'amountAvailableHumanBone', 'sellHumanBone');
+  const humanBone = createItem('Human Bone', [160, 300], [0, 12], 'amountAvailableHumanBone', 'myHumanBone', 'buyHumanBone', 'currentPriceHumanBone', 'amountAvailableHumanBone', 'sellHumanBone');
 
   const phoenixFeather = createItem('Phoenix Feather', [500, 1300], [0, 32], 'amountAvailablePhoenixFeather', 'myPhoenixFeather', 'buyPhoenixFeather', 'currentPricePhoenixFeather', 'amountAvailablePhoenixFeather', 'sellPhoenixFeather');
 
-  const dragonBlood = createItem('Dragon Blood', [7000, 12500], [0, 11], 'amountAvailableDragonBlood', 'myDragonBlood', 'buyDragonBlood', 'currentPriceDragonBlood', 'amountAvailableDragonBlood', 'sellDragonBlood');
+  const dragonBlood = createItem('Dragon Blood', [70, 1250], [0, 5], 'amountAvailableDragonBlood', 'myDragonBlood', 'buyDragonBlood', 'currentPriceDragonBlood', 'amountAvailableDragonBlood', 'sellDragonBlood');
 
   const unicornHorn = createItem('Unicorn Horn', [10, 250], [0, 80], 'amountAvailableUnicornHorn', 'myUnicornHorn', 'buyUnicornHorn', 'currentPriceUnicornHorn', 'amountAvailableUnicornHorn', 'sellUnicornHorn');
 
   const crazyMushroom = createItem('Crazy Mushroom', [330, 1100], [0, 18], 'amountAvailableCrazyMushroom', 'myCrazyMushroom', 'buyCrazyMushroom', 'currentPriceCrazyMushroom', 'amountAvailableCrazyMushroom', 'sellCrazyMushroom');
 
-  const snakeOil = createItem('Snake Oil', [100, 250], [2, 22], 'amountAvailableSnakeOil', 'mySnakeOil', 'buySnakeOil', 'currentPriceSnakeOil', 'amountAvailableSnakeOil', 'sellSnakeOil');
+  const snakeOil = createItem('Snake Oil', [10, 250], [2, 22], 'amountAvailableSnakeOil', 'mySnakeOil', 'buySnakeOil', 'currentPriceSnakeOil', 'amountAvailableSnakeOil', 'sellSnakeOil');
 
-  const giantSpiderLeg = createItem('Giant Spider Leg', [11000, 44500], [0, 8], 'amountAvailableGiantSpiderLeg', 'myGiantSpiderLeg', 'buyGiantSpiderLeg', 'currentPriceGiantSpiderLeg', 'amountAvailableGiantSpiderLeg', 'sellGiantSpiderLeg');
+  const giantSpiderLeg = createItem('Giant Spider Leg', [1100, 4450], [0, 8], 'amountAvailableGiantSpiderLeg', 'myGiantSpiderLeg', 'buyGiantSpiderLeg', 'currentPriceGiantSpiderLeg', 'amountAvailableGiantSpiderLeg', 'sellGiantSpiderLeg');
 
 
   allItems.push(pixieDust, humanBone, phoenixFeather, dragonBlood, unicornHorn, crazyMushroom, snakeOil, giantSpiderLeg);
@@ -226,8 +227,11 @@ $(() => {
     {message: 'You got attacked by a talking bunny! Its like you want to prove Darwin wrong. -1 health, -25% of charcter money.'},
     {message: 'You tripped over a gnome and fell in a well. You are soggy and smell of frog poo. -1 health, -25% of charcter money.'},
     {message: 'Stink from the sky!! A dragon has flown over you and decided your outfit could do with a paint job. You smell like a dragons outhouse. According to folklore this is lucky?  -1 health, -25% of charcter money.'},
-    {message: 'A beautiful elf woman leads you into an alley. You wake up sore and ashamed. -1 health, -25% of charcter money.'},
-    {message: 'A beautiful elf woman leads you into an alley. You wake up sore and ashamed. -1 health, -25% of charcter money.'}
+    {message: 'A beautiful elf woman leads you into an alley. You wake up sore and ashamed. -1 health, -25% of character money.'},
+    {message: 'The City Guard does not like the look of you. Thank all the dark gods they used some snake oil first! -1 health, -25% of charcter money.'},
+    {message: 'You have been punched in the unmentionables by a dwarven street urchin. Apparently it is a sign of respect in their culture. -1 health, -25% of charcter money.'},
+    {message: 'A big lady troll (BLT) asks if you are looking for a good time... it was not a good time. -1 health, -25% of charcter money.'},
+    {message: 'Your vampire roomate sucks... -1 health, -25% of charcter money.'}
 
   ];
 
@@ -243,7 +247,7 @@ $(() => {
       $money.html((character.money).toFixed(2));
       $health.html(`${character.health}`);
       if (character.helth === 0) {
-        alert('You have died. Obviously this means you have lost.');
+        alert('You have died. Obviously this means you have lost. Maybe in your next life you will not be such a looser...');
         window.reset();
       }
     }
