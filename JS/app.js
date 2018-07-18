@@ -9,7 +9,10 @@ $(() => {
   const $nextTurn = $('#nextTurn');
   const $buttonDeposit = $('#buttonDeposit');
   const $inputDeposit = $('#inputDeposit');
-  const encounterChance = 0.02;
+
+  const $actionLog = $('.actionLog ul');
+
+  const encounterChance = 0.03;
   const initialMoney = 3000;
   const initialHealth = 10;
   const initialTurns = 30;
@@ -156,6 +159,9 @@ $(() => {
         console.log(character);
         displayCurrentItemMarket(item);
         randomEncounter();
+
+        $actionLog.append(`<li>You have PURCHASED ${item.name} at £${item.currentPrice}.<li>`);
+
       } else {
         alert(`You cannot buy ${item.name}! Sucks to be you.`);
       }
@@ -216,8 +222,10 @@ $(() => {
 
     } else if (character.debtBalance > 0) {
       alert('You loose! The goblin loan shark has cut your debt out of your flesh... fun times!');
+      window.reset();
     } else if (character.debtBalance === 0) {
       alert(`You win, your score is ${character.bankBalance}`);
+      window.reset();
     }
   }
   //////////////////////Random Encounters//////////////////////////////////
@@ -253,9 +261,6 @@ $(() => {
     }
     // then the same for money loss risk
   }
-  // TODO: After the encounter, check for character health and maybe die!?
-
-
   function criticalFail() {
     return Math.random() < encounterChance;
   }
@@ -265,9 +270,11 @@ $(() => {
   }
 
 
-  //create function around a random chance genrator (probably 'maths.random') which will if you health is greater than 1 subtract 1 health from character.health, and then create an alert to tell you that you have been attacked. If however you have health is equal to 1 it will send you an alert telling you that you have been attacked, died, and lost, then it will reset the window.
 
-  // place thisd function whithin the nextTurn functions first if statement, and first if statement for the clickListener of buy and sell
+
+// $actionLog.append(`<li>You have PURCHASED ${item.name} at £${item.currentPrice}.<li>`);
+
+
 
 
 });
