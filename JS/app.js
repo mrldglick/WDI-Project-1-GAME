@@ -9,8 +9,12 @@ $(() => {
   const $nextTurn = $('#nextTurn');
   const $buttonDeposit = $('#buttonDeposit');
   const $inputDeposit = $('#inputDeposit');
-
+  const $start = $('#start');
   const $actionLog = $('.actionLog ul');
+  const $intro = $('.intro');
+  const $message = $('.message-container');
+  const $messageButton = $('.message-container button');
+  const $messageText = $('.message-container p');
 
   const encounterChance = 0.03;
   const initialMoney = 3000;
@@ -19,7 +23,19 @@ $(() => {
   const initialDebtBalance = 4000;
   const initialBankBalance = 0;
   // let turnsRemaining = initialTurns;
+  $start.on('click', () => {
+    $intro.fadeOut();
+  });
 
+
+  $messageButton.on('click', () => {
+    $message.fadeOut();
+  });
+
+  function openAlert(text){
+    $messageText.html(text);
+    $message.fadeIn();
+  }
 
   ////////////////////CHARACTER//////////////
   const character = {
@@ -163,7 +179,7 @@ $(() => {
         $actionLog.append(`<li>You have PURCHASED ${item.name} at £${item.currentPrice}.<li>`);
 
       } else {
-        alert(`You cannot buy ${item.name}! Sucks to be you.`);
+        openAlert(`You cannot buy ${item.name}! Sucks to be you.`);
       }
     });
   }
@@ -189,6 +205,8 @@ $(() => {
     item.amountAvailable += 1;
   }
 
+
+
   function addSellClickListener(item) {
     item.$sellButton.on('click', () => {
       if (itemCanBeSold(item)) {
@@ -197,8 +215,9 @@ $(() => {
         console.log(character);
         displayCurrentItemMarket(item);
         randomEncounter();
+        $actionLog.append(`<li>You have SOLD ${item.name} for £${item.currentPrice}.<li>`);
       } else {
-        alert(`You cannot sell ${item.name}! You dont own any, idoit!`);
+        alert(`You cannot sell ${item.name}! You dont own any, idiot!`);
       }
     });
   }
@@ -251,7 +270,7 @@ $(() => {
       // if (rollDice(encounter.healthLossRisk)) {
       // lose health
       character.health = character.health - 1;
-      character.money = character.money * 0.25;
+      character.money = character.money * 0.75;
       $money.html((character.money).toFixed(2));
       $health.html(`${character.health}`);
       if (character.helth === 0) {
