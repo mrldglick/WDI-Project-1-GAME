@@ -12,9 +12,11 @@ $(() => {
   const $start = $('#start');
   const $actionLog = $('.actionLog ul');
   const $intro = $('.intro');
-  const $message = $('.message-container');
-  const $messageButton = $('.message-container button');
-  const $messageText = $('.message-container p');
+  const $message = $('.messageContainer');
+  const $messageButton = $('.messageContainer button');
+  const $messageText = $('.messageContainer p');
+  const $audio = $('audio')[0];
+
 
   const encounterChance = 0.03;
   const initialMoney = 3000;
@@ -24,6 +26,7 @@ $(() => {
   const initialBankBalance = 0;
   // let turnsRemaining = initialTurns;
   $start.on('click', () => {
+    $audio.play();
     $intro.fadeOut();
   });
 
@@ -69,9 +72,9 @@ $(() => {
       character.bankBalance - character.debtBalance;
       $debtBalance.html(character.debtBalance);
       nextTurn();
-      console.log('debt paid');
+      openAlert('Debt Paid! Looks like you are not going to be cut into little bits and fed to the squid people. Good for you!');
     } else {
-      console.log('not enough money!');
+      openAlert('Cecil wants his money in full, he does not have time to spare on small installments!');
     }
   });
 
@@ -179,7 +182,7 @@ $(() => {
         $actionLog.append(`<li>You have PURCHASED ${item.name} at £${item.currentPrice}.<li>`);
 
       } else {
-        openAlert(`You cannot buy ${item.name}! Sucks to be you.`);
+        openAlert(`You cannot buy ${item.name}!`);
       }
     });
   }
@@ -217,7 +220,7 @@ $(() => {
         randomEncounter();
         $actionLog.append(`<li>You have SOLD ${item.name} for £${item.currentPrice}.<li>`);
       } else {
-        alert(`You cannot sell ${item.name}! You dont own any, idiot!`);
+        openAlert(`You cannot sell ${item.name}! You dont own any!`);
       }
     });
   }
@@ -240,10 +243,10 @@ $(() => {
       randomEncounter();
 
     } else if (character.debtBalance > 0) {
-      alert('You loose! The goblin loan shark has cut your debt out of your flesh... fun times!');
+      openAlert('You loose! The goblin loan shark has cut your debt out of your flesh... fun times!');
       window.reset();
     } else if (character.debtBalance === 0) {
-      alert(`You win, your score is ${character.bankBalance}`);
+      openAlert(`You win, your score is ${character.bankBalance}`);
       window.reset();
     }
   }
@@ -266,7 +269,7 @@ $(() => {
     if (criticalFail()) {
       const encounter = randomChoiceFromArray(encounters);
       // Handle the encounter
-      alert(encounter.message);
+      openAlert(encounter.message);
       // if (rollDice(encounter.healthLossRisk)) {
       // lose health
       character.health = character.health - 1;
@@ -274,7 +277,7 @@ $(() => {
       $money.html((character.money).toFixed(2));
       $health.html(`${character.health}`);
       if (character.helth === 0) {
-        alert('You have died. Obviously this means you have lost. Maybe in your next life you will not be such a looser...');
+        openAlert('You have died. Obviously this means you have lost.');
         window.reset();
       }
     }

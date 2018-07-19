@@ -18,11 +18,38 @@ body {
   bottom: 0;
   right: 0;
   left: 0;
-  background: teal;
+  background-image: url("../images/antique-scroll-backgrounds-wallpapers.jpg");
+  background-size: cover;
   z-index: 10;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+
+
+}
+.intro h1{
+  padding-top: 100px;
+  font-family: 'Spicy Rice', cursive;
+}
+.intro p{
+  margin-left: 125px;
+  margin-right: 125px;
+  font-family: 'Nanum Brush Script', cursive;
 }
 
-.message-container {
+#start {
+    opacity: 0.7;
+    background-color: black;
+    color: white;
+    border: none;
+    font-family: 'Fredericka the Great', cursive;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px 2px;
+    border-radius: 45px 25px;
+}
+.messageContainer {
   position: fixed;
   top:0;
   bottom: 0;
@@ -35,6 +62,7 @@ body {
 
 .message {
   background-color: white;
+  /* background-image: url("../images/scroll-message.jpg"); */
   border: 1px solid grey;
   padding: 30px;
   text-align: center;
@@ -43,10 +71,12 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  border-radius: 45px 25px;
 }
 
 .message p {
   font-size: 20px;
+  font-family: 'Spicy Rice', cursive;
 }
 
 
@@ -129,7 +159,7 @@ main {
   flex-wrap: wrap;
   align-items: flex-start;
   margin: 15px;
-  font-family: 'Nanum Brush Script', cursive;
+  font-family: 'New Rocker', cursive;
 }
 
 
@@ -148,17 +178,22 @@ main {
   text-align: center;
   font-weight: bold;
   margin: 10px;
+  font-family: 'Nanum Brush Script', cursive;
+  font-size: 20px;
 }
 .productIcon {
-  align-items: center;
-  text-align: center;
-  display: inline-block;
+  margin: 0 auto;
+  display: block;
 }
 .product p{
   font-weight: bold;
   text-align: center;
+  font-size: 16px;
+  font-family: 'New Rocker', cursive;
 }
-
+#actionLogTitle {
+  font-family: 'Nanum Brush Script', cursive;
+}
 .actionLog {
   align-items: center;
   height: 275px;

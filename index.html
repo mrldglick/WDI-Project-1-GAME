@@ -3,147 +3,151 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="CSS/stylesheet.css">
+  <link href="https://fonts.googleapis.com/css?family=New+Rocker|Roboto|Spicy+Rice" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" charset="utf-8"></script>
-  <script src="JS/app.js" charset="utf-8"></script>
-  <title>The Magic Market</title>
-</head>
 
-<body>
-  <div class="container">
+    <script src="JS/app.js" charset="utf-8"></script>
+    <title>The Magic Market</title>
+  </head>
 
-    <div class="intro">
-      <h1>The Magic Market</h1>
-      <p>The great and powerful wizard Bob went out last night on one of his biweekly benders. Normally, the worst thing to come of these ‘incidents’ is an itchy case of dragon pox. Unfortunately, this morning he woke up realising he had borrowed big from Cecil, the goblin loan shark.</p>
+  <body>
+    <audio src="./music/goron-shop.mp3" autoplay loop></audio>
+    <div class="container">
 
-      <p>You have 30 turns in which to raise the cash to pay back Cecil. To make things worse, the sneaky goblin managed to get you to agree on a compound interest inclusive loan. Each turn your debt increases by 10% and Cecil will only accept a full payment so you can’t just pay of the interest. He also claims that his grubby green goblin hands are too clean to touch money directly and he will only accept bank transfers.</p>
+      <div class="intro">
+        <h1>The Magic Market</h1>
+        <p>The great and powerful wizard Bob went out last night on one of his biweekly benders. Normally, the worst thing to come of these ‘incidents’ is an itchy case of dragon pox. Unfortunately, this morning he woke up realising he had borrowed big from Cecil, the goblin loan shark.</p>
 
-      <p>Being the enterprising wizard (and part time necromantic pimp) that you are, you have got yourself hooked up with the contraband magical market. You must buy and sell items in order to make a profit. Each turn the price will rise or fall, along with the amount available for purchase. To make things more complicated, you live in a dangerous magical world, and going outside in order to make transactions risks attack at any time. Playing the magic market comes with a real chance of death, which, all things considered, might be a more merciful fate than what Cecil will do to you if you don’t pay up in time. </p>
+        <p>You have 30 turns in which to raise the cash to pay back Cecil. To make things worse, the sneaky goblin managed to get you to agree on a compound interest inclusive loan. Each turn your debt increases by 10% and Cecil will only accept a full payment so you can’t just pay of the interest. He also claims that his grubby green goblin hands are too clean to touch money directly and he will only accept bank transfers.</p>
 
-      <button id="start" type="button" name="button">Start</button>
+        <p>Being the enterprising wizard (and part time necromantic pimp) that you are, you have got yourself hooked up with the contraband magical market. You must buy and sell items in order to make a profit. Each turn the price will rise or fall, along with the amount available for purchase. To make things more complicated, you live in a dangerous magical world, and going outside in order to make transactions risks attack at any time. Playing the magic market comes with a real chance of death, which, all things considered, might be a more merciful fate than what Cecil will do to you if you don’t pay up in time. </p>
 
-    </div>
-    <div class="message-container">
-      <div class="message">
-        <p>hi there</p>
-        <button type="button" name="button">ok</button>
+        <button id="start" type="button" name="button">Start</button>
+
       </div>
-    </div>
+      <div class="messageContainer">
+        <div class="message">
+          <p>hi there</p>
+          <button type="button" name="button">ok</button>
+        </div>
+      </div>
 
-    <header>
-      <h1 id="title">The Magic Market</h1>
-      <section class="topScreen">
-        <div class="character">
-          <h1>Character</h1>
-          <img id="characterPic" src="./images/wizard.png" alt="This is you!">
-          <p>Money: £<span id="money"></span></p>
-          <p>Health: <span id="health"></span> HP</p>
+      <header>
+        <h1 id="title">The Magic Market</h1>
+        <section class="topScreen">
+          <div class="character">
+            <h1>Character</h1>
+            <img id="characterPic" src="./images/wizard.png" alt="This is you!">
+            <p>Money: £<span id="money"></span></p>
+            <p>Health: <span id="health"></span> HP</p>
+          </div>
+
+          <div class="turnsRemaining">
+            <h1>Turns Remaining</h1>
+            <h1 id="turnCounter">30</h1>
+            <button id="nextTurn" type="button" name="button">Next Turn</button>
+          </div>
+
+          <div class="bank">
+            <h1>Bank</h1>
+            <p>Your bank balance is £<span id=bankBalance></span>.</p>
+            <span>£</span><input id="inputDeposit" class="makeDeposit" type="number" name="deposit">
+            <input id="buttonDeposit" class="makeDeposit" type="submit" name="makeDeposit" value="Make Deposit">
+            <p>You are £<span id="debtBalance"></span> in debt!</p>
+            <button id="payDebt" type="button" name="payDebt">Pay Debt?</button>
+          </div>
+        </section>
+      </header>
+      <main>
+
+        <div class="product" id="pixieDust">
+          <h3>Pixie Dust</h3>
+          <img class="productIcon" src="./images/pixie-dust-icon.png" alt="pixie dust bag" id='pixieDustPicture'>
+          <p class="currentPrice">Todays price is £<span id="currentPricePixieDust"></span></p>
+          <p class"amountAvailable"><span id="amountAvailablePixieDust"></span> avaidable units to buy.</p>
+          <p>You own <span id="myPixieDust"></span> units.</p>
+          <button class="buy" id="buyPixieDust" type="button" name="button">Buy</button>
+          <button class="sell" id="sellPixieDust" type="button" name="button">Sell</button>
         </div>
 
-        <div class="turnsRemaining">
-          <h1>Turns Remaining</h1>
-          <h1 id="turnCounter">30</h1>
-          <button id="nextTurn" type="button" name="button">Next Turn</button>
+        <div class="product" id="humanBone">
+          <h3>Human Bone</h3>
+          <img class="productIcon" src="./images/bone-icon.png" alt="human bone" id='humanBonePicture'>
+          <p class="currentPrice">Todays price is £<span id="currentPriceHumanBone"></span></p>
+          <p class"amountAvailable"><span id="amountAvailableHumanBone"></span> avaidable units to buy.</p>
+          <p>You own <span id="myHumanBone"></span> units.</p>
+          <button class="buy" id="buyHumanBone" type="button" name="button">Buy</button>
+          <button class="sell" id="sellHumanBone" type="button" name="button">Sell</button>
         </div>
 
-        <div class="bank">
-          <h1>Bank</h1>
-          <p>Your bank balance is £<span id=bankBalance></span>.</p>
-          <span>£</span><input id="inputDeposit" class="makeDeposit" type="number" name="deposit">
-          <input id="buttonDeposit" class="makeDeposit" type="submit" name="makeDeposit" value="Make Deposit">
-          <p>You are £<span id="debtBalance"></span> in debt!</p>
-          <button id="payDebt" type="button" name="payDebt">Pay Debt?</button>
+        <div class="product" id="phoenixFeather">
+          <h3>Phoenix Feather</h3>
+          <img class="productIcon" src="./images/feather-icon.png" alt="Phoenix Feather" id='phoenixFeatherPicture'>
+          <p class="currentPrice">Todays price is £<span id="currentPricePhoenixFeather"></span></p>
+          <p class"amountAvailable"><span id="amountAvailablePhoenixFeather"></span> avaidable units to buy.</p>
+          <p>You own <span id="myPhoenixFeather"></span> units.</p>
+          <button class="buy" id="buyPhoenixFeather" type="button" name="button">Buy</button>
+          <button class="sell" id="sellPhoenixFeather" type="button" name="button">Sell</button>
         </div>
-      </section>
-    </header>
-    <main>
 
-      <div class="product" id="pixieDust">
-        <h3>Pixie Dust</h3>
-        <img class="productIcon" src="./images/pixie-dust-icon.png" alt="pixie dust bag" id='pixieDustPicture'>
-        <p class="currentPrice">Todays price is £<span id="currentPricePixieDust"></span></p>
-        <p class"amountAvailable"><span id="amountAvailablePixieDust"></span> avaidable units to buy.</p>
-        <p>You own <span id="myPixieDust"></span> units.</p>
-        <button class="buy" id="buyPixieDust" type="button" name="button">Buy</button>
-        <button class="sell" id="sellPixieDust" type="button" name="button">Sell</button>
+        <div class="product" id="dragonBlood">
+          <h3>Dragon Blood</h3>
+          <img class="productIcon" src="./images/dragon-blood-icon.png" alt="dragon blood icon" id='dragonBloodPicture'>
+          <p class="currentPrice">Todays price is £<span id="currentPriceDragonBlood"></span></p>
+          <p class"amountAvailable"><span id="amountAvailableDragonBlood"></span> avaidable units to buy.</p>
+          <p>You own <span id="myDragonBlood"></span> units.</p>
+          <button class="buy" id="buyDragonBlood" type="button" name="button">Buy</button>
+          <button class="sell" id="sellDragonBlood" type="button" name="button">Sell</button>
+        </div>
+
+        <div class="product" id="unicornHorn">
+          <h3>Unicorn Horn</h3>
+          <img class="productIcon" src="./images/unicorn-icon.png" alt="unicorn" id='unicornHornPicture'>
+          <p class="currentPrice">Todays price is £<span id="currentPriceUnicornHorn"></span></p>
+          <p class"amountAvailable"><span id="amountAvailableUnicornHorn"></span> avaidable units to buy.</p>
+          <p>You own <span id="myUnicornHorn"></span> units.</p>
+          <button class="buy" id="buyUnicornHorn" type="button" name="button">Buy</button>
+          <button class="sell" id="sellUnicornHorn" type="button" name="button">Sell</button>
+        </div>
+
+        <div class="product" id="crazyMushroom">
+          <h3>Crazy Mushroom</h3>
+          <img class="productIcon" src="./images/mushroom-icon.png" alt="crazy mushroom" id='crazyMushroomPicture'>
+          <p class="currentPrice">Todays price is £<span id="currentPriceCrazyMushroom"></span></p>
+          <p class"amountAvailable"><span id="amountAvailableCrazyMushroom"></span> avaidable units to buy.</p>
+          <p>You own <span id="myCrazyMushroom"></span> units.</p>
+          <button class="buy" id="buyCrazyMushroom" type="button" name="button">Buy</button>
+          <button class="sell" id="sellCrazyMushroom" type="button" name="button">Sell</button>
+        </div>
+
+        <div class="product" id="snakeOil">
+          <h3>Snake Oil</h3>
+          <img class="productIcon" src="./images/snakeoil-icon.png" alt="snake oil" id='snakeOilPicture'>
+          <p class="currentPrice">Todays price is £<span id="currentPriceSnakeOil"></span></p>
+          <p class"amountAvailable"><span id="amountAvailableSnakeOil"></span> avaidable units to buy.</p>
+          <p>You own <span id="mySnakeOil"></span> units.</p>
+          <button class="buy" id="buySnakeOil" type="button" name="button">Buy</button>
+          <button class="sell" id="sellSnakeOil" type="button" name="button">Sell</button>
+        </div>
+
+        <div class="product" id="giantSpiderLeg">
+          <h3>Giant Spider Leg</h3>
+          <img class="productIcon" src="./images/spider-icon.png" alt="spider" id='giantSpiderLegPicture'>
+          <p class="currentPrice">Todays price is £<span id="currentPriceGiantSpiderLeg"></span></p>
+          <p class"amountAvailable"><span id="amountAvailableGiantSpiderLeg"></span> avaidable units to buy.</p>
+          <p>You own <span id="myGiantSpiderLeg"></span> units.</p>
+          <button class="buy" id="buyGiantSpiderLeg" type="button" name="button">Buy</button>
+          <button class="sell" id="sellGiantSpiderLeg" type="button" name="button">Sell</button>
+        </div>
+      </main>
+      <h3 id="actionLogTitle">Action Log:</h3>
+      <div class="actionLog">
+        <ul>
+
+        </ul>
       </div>
-
-      <div class="product" id="humanBone">
-        <h3>Human Bone</h3>
-        <img class="productIcon" src="./images/bone-icon.png" alt="human bone" id='humanBonePicture'>
-        <p class="currentPrice">Todays price is £<span id="currentPriceHumanBone"></span></p>
-        <p class"amountAvailable"><span id="amountAvailableHumanBone"></span> avaidable units to buy.</p>
-        <p>You own <span id="myHumanBone"></span> units.</p>
-        <button class="buy" id="buyHumanBone" type="button" name="button">Buy</button>
-        <button class="sell" id="sellHumanBone" type="button" name="button">Sell</button>
-      </div>
-
-      <div class="product" id="phoenixFeather">
-        <h3>Phoenix Feather</h3>
-        <img class="productIcon" src="./images/feather-icon.png" alt="Phoenix Feather" id='phoenixFeatherPicture'>
-        <p class="currentPrice">Todays price is £<span id="currentPricePhoenixFeather"></span></p>
-        <p class"amountAvailable"><span id="amountAvailablePhoenixFeather"></span> avaidable units to buy.</p>
-        <p>You own <span id="myPhoenixFeather"></span> units.</p>
-        <button class="buy" id="buyPhoenixFeather" type="button" name="button">Buy</button>
-        <button class="sell" id="sellPhoenixFeather" type="button" name="button">Sell</button>
-      </div>
-
-      <div class="product" id="dragonBlood">
-        <h3>Dragon Blood</h3>
-        <img class="productIcon" src="./images/dragon-blood-icon.png" alt="dragon blood icon" id='dragonBloodPicture'>
-        <p class="currentPrice">Todays price is £<span id="currentPriceDragonBlood"></span></p>
-        <p class"amountAvailable"><span id="amountAvailableDragonBlood"></span> avaidable units to buy.</p>
-        <p>You own <span id="myDragonBlood"></span> units.</p>
-        <button class="buy" id="buyDragonBlood" type="button" name="button">Buy</button>
-        <button class="sell" id="sellDragonBlood" type="button" name="button">Sell</button>
-      </div>
-
-      <div class="product" id="unicornHorn">
-        <h3>Unicorn Horn</h3>
-        <img class="productIcon" src="./images/unicorn-icon.png" alt="unicorn" id='unicornHornPicture'>
-        <p class="currentPrice">Todays price is £<span id="currentPriceUnicornHorn"></span></p>
-        <p class"amountAvailable"><span id="amountAvailableUnicornHorn"></span> avaidable units to buy.</p>
-        <p>You own <span id="myUnicornHorn"></span> units.</p>
-        <button class="buy" id="buyUnicornHorn" type="button" name="button">Buy</button>
-        <button class="sell" id="sellUnicornHorn" type="button" name="button">Sell</button>
-      </div>
-
-      <div class="product" id="crazyMushroom">
-        <h3>Crazy Mushroom</h3>
-        <img class="productIcon" src="./images/mushroom-icon.png" alt="crazy mushroom" id='crazyMushroomPicture'>
-        <p class="currentPrice">Todays price is £<span id="currentPriceCrazyMushroom"></span></p>
-        <p class"amountAvailable"><span id="amountAvailableCrazyMushroom"></span> avaidable units to buy.</p>
-        <p>You own <span id="myCrazyMushroom"></span> units.</p>
-        <button class="buy" id="buyCrazyMushroom" type="button" name="button">Buy</button>
-        <button class="sell" id="sellCrazyMushroom" type="button" name="button">Sell</button>
-      </div>
-
-      <div class="product" id="snakeOil">
-        <h3>Snake Oil</h3>
-        <img class="productIcon" src="./images/snakeoil-icon.png" alt="snake oil" id='snakeOilPicture'>
-        <p class="currentPrice">Todays price is £<span id="currentPriceSnakeOil"></span></p>
-        <p class"amountAvailable"><span id="amountAvailableSnakeOil"></span> avaidable units to buy.</p>
-        <p>You own <span id="mySnakeOil"></span> units.</p>
-        <button class="buy" id="buySnakeOil" type="button" name="button">Buy</button>
-        <button class="sell" id="sellSnakeOil" type="button" name="button">Sell</button>
-      </div>
-
-      <div class="product" id="giantSpiderLeg">
-        <h3>Giant Spider Leg</h3>
-        <img class="productIcon" src="./images/spider-icon.png" alt="spider" id='giantSpiderLegPicture'>
-        <p class="currentPrice">Todays price is £<span id="currentPriceGiantSpiderLeg"></span></p>
-        <p class"amountAvailable"><span id="amountAvailableGiantSpiderLeg"></span> avaidable units to buy.</p>
-        <p>You own <span id="myGiantSpiderLeg"></span> units.</p>
-        <button class="buy" id="buyGiantSpiderLeg" type="button" name="button">Buy</button>
-        <button class="sell" id="sellGiantSpiderLeg" type="button" name="button">Sell</button>
-      </div>
-    </main>
-    <div class="actionLog">
-      <ul>
-
-      </ul>
     </div>
-  </div>
-</body>
-</html>
+  </body>
+  </html>
