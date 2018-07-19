@@ -46,9 +46,9 @@ $(() => {
     health: initialHealth,
     inventory: {
       'Pixie Dust': 0,
-      'Human Bone': 0,
+      'Human Bone': 2,
       'Phoenix Feather': 0,
-      'Dragon Blood': 0,
+      'Dragon Blood': 1,
       'Unicorn Horn': 0,
       'Crazy Mushroom': 0,
       'Snake Oil': 0,
@@ -244,10 +244,12 @@ $(() => {
 
     } else if (character.debtBalance > 0) {
       openAlert('You loose! The goblin loan shark has cut your debt out of your flesh... fun times!');
-      window.reset();
+      // window.reset();
+      // window.reload();
     } else if (character.debtBalance === 0) {
       openAlert(`You win, your score is ${character.bankBalance}`);
-      window.reset();
+      // window.reset();
+      // window.reload();
     }
   }
   //////////////////////Random Encounters//////////////////////////////////
@@ -294,7 +296,7 @@ $(() => {
 
 
 
-// $actionLog.append(`<li>You have PURCHASED ${item.name} at £${item.currentPrice}.<li>`);
+  // $actionLog.append(`<li>You have PURCHASED ${item.name} at £${item.currentPrice}.<li>`);
 
 
 
