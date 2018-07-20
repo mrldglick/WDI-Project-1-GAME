@@ -67,9 +67,12 @@ $(() => {
   /////////////////PAY DEBT BUTTON /////////////
 
   $payDebt.on('click', () => {
-    console.log(character.bankBalance);
     if(character.bankBalance >= character.debtBalance) {
-      character.bankBalance - character.debtBalance;
+
+      character.bankBalance = (character.bankBalance - character.debtBalance).toFixed(2);
+      $bankBalance.html(`${character.bankBalance}`);
+
+      character.debtBalance = 0;
       $debtBalance.html(character.debtBalance);
       nextTurn();
       openAlert('Debt Paid! Looks like you are not going to be cut into little bits and fed to the squid people. Good for you!');
@@ -82,7 +85,7 @@ $(() => {
 
   $buttonDeposit.on('click', () => {
     const deposit = $inputDeposit.val();
-    character.money = character.money - parseFloat(deposit);
+    character.money = (character.money - parseFloat(deposit)).toFixed(2);
     character.bankBalance = character.bankBalance + parseFloat(deposit);
     $money.html(character.money);
     $bankBalance.html(character.bankBalance);
@@ -158,7 +161,7 @@ $(() => {
   }
 
   function buyItem(item) {
-    character.money = (character.money - item.currentPrice);
+    character.money = (character.money - item.currentPrice).toFixed(2);
     console.log(character.inventory);
     character.inventory[item.name]++;
     item.amountAvailable = (item.amountAvailable - 1);
@@ -202,7 +205,7 @@ $(() => {
   }
 
   function sellItem(item) {
-    character.money = (character.money + item.currentPrice);
+    character.money = (character.money + item.currentPrice).toFixed(2);
     console.log(character.inventory);
     character.inventory[item.name]--;
     item.amountAvailable += 1;
@@ -278,12 +281,14 @@ $(() => {
       // if (rollDice(encounter.healthLossRisk)) {
       // lose health
       character.health = character.health - 1;
-      character.money = character.money * 0.75;
-      $money.html((character.money).toFixed(2));
+      character.money = (character.money * 0.75).toFixed(2);
+      console.log('CHARACTER MONEY =>', character.money);
+
+      $money.html(character.money);
       $health.html(`${character.health}`);
       if (character.helth === 0) {
         openAlert('You have died. Obviously this means you have lost.');
-          reloadAfter(5000);
+        reloadAfter(5000);
       }
     }
     // then the same for money loss risk
