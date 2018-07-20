@@ -63,8 +63,7 @@ body {
 }
 
 .message {
-  background-color: white;
-  /* background-image: url("../images/scroll-message.jpg"); */
+  background-color: white
   border: 1px solid grey;
   padding: 30px;
   text-align: center;
