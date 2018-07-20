@@ -232,6 +232,11 @@ $(() => {
 
   $nextTurn.on('click', nextTurn);
 
+
+  function reloadAfter(milliseconds) {
+    setTimeout(() => window.location.reload(), milliseconds);
+  }
+
   function nextTurn() {
     if (turnCounter >= 1) {
       console.log('you have 1+ turns');
@@ -244,10 +249,10 @@ $(() => {
 
     } else if (character.debtBalance > 0) {
       openAlert('You lose! The goblin loan shark has cut your debt out of your flesh... fun times!');
-      window.location.reload();
+      reloadAfter(5000);
     } else if (character.debtBalance === 0) {
       openAlert(`You win, your score is ${character.bankBalance}`);
-      window.location.reload();
+      reloadAfter(5000);
       // window.reset();
       // window.reload();
     }
