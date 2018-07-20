@@ -253,8 +253,6 @@ $(() => {
     } else if (character.debtBalance === 0) {
       openAlert(`You win, your score is ${character.bankBalance}`);
       reloadAfter(5000);
-      // window.reset();
-      // window.reload();
     }
   }
   //////////////////////Random Encounters//////////////////////////////////
@@ -285,7 +283,7 @@ $(() => {
       $health.html(`${character.health}`);
       if (character.helth === 0) {
         openAlert('You have died. Obviously this means you have lost.');
-        window.reset();
+          reloadAfter(5000);
       }
     }
     // then the same for money loss risk
