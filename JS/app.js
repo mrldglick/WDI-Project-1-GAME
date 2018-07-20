@@ -243,11 +243,11 @@ $(() => {
       randomEncounter();
 
     } else if (character.debtBalance > 0) {
-      openAlert('You loose! The goblin loan shark has cut your debt out of your flesh... fun times!');
-      // window.reset();
-      // window.reload();
+      openAlert('You lose! The goblin loan shark has cut your debt out of your flesh... fun times!');
+      window.location.reload();
     } else if (character.debtBalance === 0) {
       openAlert(`You win, your score is ${character.bankBalance}`);
+      window.location.reload();
       // window.reset();
       // window.reload();
     }
