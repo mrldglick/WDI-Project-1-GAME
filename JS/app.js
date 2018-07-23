@@ -161,7 +161,7 @@ $(() => {
   }
 
   function buyItem(item) {
-    character.money = (character.money - item.currentPrice).toFixed(2);
+    character.money = (character.money - item.currentPrice);
     console.log(character.inventory);
     character.inventory[item.name]++;
     item.amountAvailable = (item.amountAvailable - 1);
@@ -205,7 +205,7 @@ $(() => {
   }
 
   function sellItem(item) {
-    character.money = (character.money + item.currentPrice).toFixed(2);
+    character.money = (character.money + item.currentPrice);
     console.log(character.inventory);
     character.inventory[item.name]--;
     item.amountAvailable += 1;
@@ -246,7 +246,7 @@ $(() => {
       turnCounter = (turnCounter - 1);
       $turnCounter.html(turnCounter);
       character.debtBalance =  (character.debtBalance * 1.1);
-      $debtBalance.html((character.debtBalance).toFixed(2));
+      $debtBalance.html(character.debtBalance);
       allItems.forEach(item => item.recalculateMarket());
       randomEncounter();
 
@@ -258,7 +258,7 @@ $(() => {
       reloadAfter(5000);
     }
   }
-  //////////////////////Random Encounters//////////////////////////////////
+  /////////////////Random Encounters//////////////////////////
 
   const encounters = [
     { message: 'You got mugged by a fairy! You are pretty damn pathetic. -1 health, -25% of charcter money.'},
